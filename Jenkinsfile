@@ -4,13 +4,16 @@ pipeline {
     stages {
         stage('Instalar dependencias') {
             steps {
-                sh 'npm install'
+                sh '''
+                    npm install
+                    chmod -R +x node_modules/.bin
+                '''
             }
         }
 
         stage('Ejecutar tests') {
             steps {
-                sh 'npm test'
+                sh 'npx jest'
             }
         }
 
